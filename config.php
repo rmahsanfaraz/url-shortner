@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$db = 'db_url_shortener';
-$user = 'username';
-$pass = 'ur_pass';
+$db = 'url_shortener';
+$user = 'root';
+$pass = 'yourpassword';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
