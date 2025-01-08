@@ -125,8 +125,7 @@ url-shortener/
 ---
 
 ## Screenshots
-_Add screenshots of your application to showcase its UI and functionality._
-
+![URL SHORTNER](url_short.jpg)
 ---
 
 ## License
