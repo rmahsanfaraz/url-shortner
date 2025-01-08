@@ -125,7 +125,7 @@ url-shortener/
 ---
 
 ## Screenshots
-![URL SHORTNER](url_short.jpg)
+![URL SHORTNER](url_short.png)
 ---
 
 ## License
