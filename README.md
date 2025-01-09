@@ -30,7 +30,7 @@ A simple, colorful URL shortener built with PHP and SQL. This application allows
 ### 2. Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/url-shortener.git
+   git clone https://github.com/rmahsanfaraz/url-shortener.git
    cd url-shortener
    ```
 
