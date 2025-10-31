@@ -6,51 +6,223 @@
     <title>Manage URLs - URL Shortener</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        .manage-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+        }
+
+        .manage-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .manage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .manage-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            background: white;
         }
+
         th, td {
-            padding: 10px;
+            padding: 16px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #e0e0e0;
         }
+
         th {
-            background-color: #ff7e5f;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .actions button {
-            margin: 0 5px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
+
+        tbody tr {
+            transition: all 0.3s ease;
         }
-        .delete-btn {
-            background-color: #e74c3c;
-            color: white;
+
+        tbody tr:hover {
+            background: #f8f9ff;
+            transform: scale(1.01);
         }
-        .analytics-btn {
-            background-color: #3498db;
-            color: white;
+
+        tbody tr:last-child td {
+            border-bottom: none;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #ff7e5f;
+
+        td a {
+            color: #667eea;
             text-decoration: none;
+            font-weight: 600;
         }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .analytics-btn {
+            background: #667eea;
+            color: white;
+        }
+
+        .analytics-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .copy-btn {
+            background: #48bb78;
+            color: white;
+        }
+
+        .copy-btn:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+        }
+
+        .delete-btn {
+            background: #f56565;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.4);
+        }
+
         .expired {
-            color: #e74c3c;
+            color: #f56565;
+            font-weight: 600;
+        }
+
+        #urls-list p {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .manage-content {
+                padding: 20px;
+            }
+
+            .manage-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .manage-header h1 {
+                font-size: 2rem;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 12px 8px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .actions button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.php" class="back-link">← Back to Home</a>
-        <h1>Manage URLs</h1>
-        <div id="urls-list">Loading...</div>
+    <div class="manage-container">
+        <div class="manage-content">
+            <div class="manage-header">
+                <h1>Manage Your URLs</h1>
+                <a href="index.php" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.8333 10H4.16667M4.16667 10L10 15.8333M4.16667 10L10 4.16667" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Back to Home
+                </a>
+            </div>
+            <div class="table-container">
+                <div id="urls-list" class="loading">Loading your URLs...</div>
+            </div>
+        </div>
     </div>
     <script src="config.js"></script>
     <script src="manage.js"></script>
