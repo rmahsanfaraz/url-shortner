@@ -39,7 +39,8 @@ A simple, colorful URL shortener built with PHP and SQL. This application allows
    ```
 
 2. Import the database:
-   - Open `database.sql` in a SQL client or MySQL command-line and execute it to create the necessary table.
+   - For new installations: Open `database.sql` in a SQL client or MySQL command-line and execute it to create the necessary table.
+   - For existing installations: Run `migration.sql` to add new columns (expires_at, last_accessed) to your existing urls table.
 
 3. Configure database connection:
    - Open `config.php` and update the database credentials:
