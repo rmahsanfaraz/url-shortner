@@ -39,7 +39,7 @@ async function loadUrls() {
                     <td>${lastAccessedText}</td>
                     <td class="actions">
                         <button class="analytics-btn" onclick="window.open('analytics.php?code=${url.short_code}', '_blank')">Analytics</button>
-                        <button class="copy-btn" onclick="copyToClipboard('http://short.skystreamstech.com/redirect.php?code=${url.short_code}')">Copy</button>
+                        <button class="copy-btn" onclick="copyToClipboard('${BASE_URL}/redirect.php?code=${url.short_code}')">Copy</button>
                         <button class="delete-btn" onclick="deleteUrl('${url.short_code}')">Delete</button>
                     </td>
                 </tr>

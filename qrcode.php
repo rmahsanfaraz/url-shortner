@@ -1,7 +1,8 @@
 <?php
+include 'config.php';
+
 // QR Code generation endpoint
 $code = $_GET['code'] ?? '';
-$baseUrl = $_GET['base_url'] ?? 'http://short.skystreamstech.com';
 
 if (empty($code)) {
     header('HTTP/1.1 400 Bad Request');
@@ -9,7 +10,7 @@ if (empty($code)) {
     exit;
 }
 
-$shortUrl = "$baseUrl/redirect.php?code=$code";
+$shortUrl = "$base_url/redirect.php?code=$code";
 
 // Generate QR code using Google Charts API (free, no dependencies)
 $qrUrl = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" . urlencode($shortUrl);

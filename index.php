@@ -21,6 +21,7 @@
             <a href="manage.html">Manage URLs</a>
         </div>
     </div>
+    <script src="config.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

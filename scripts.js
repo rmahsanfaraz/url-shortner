@@ -11,9 +11,12 @@ document.getElementById('shorten-form').addEventListener('submit', async (e) => 
     });
 
     const result = await response.json();
+    
+    // Clear previous results
+    document.getElementById('qrcode').innerHTML = '';
+    
     if (result.error) {
         document.getElementById('result').innerHTML = `<span style="color: red;">${result.error}</span>`;
-        document.getElementById('qrcode').innerHTML = '';
     } else {
         const shortUrl = result.short_url;
         const shortCode = result.short_code;

@@ -25,6 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("INSERT INTO urls (original_url, short_code, expires_at) VALUES (?, ?, ?)");
     $stmt->execute([$original_url, $short_code, $expires_at]);
 
-    echo json_encode(['short_url' => "http://short.skystreamstech.com/redirect.php?code=$short_code", 'short_code' => $short_code]);
+    echo json_encode(['short_url' => "$base_url/redirect.php?code=$short_code", 'short_code' => $short_code]);
 }
 ?>
