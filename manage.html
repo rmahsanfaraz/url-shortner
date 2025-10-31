@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage URLs - URL Shortener</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #ff7e5f;
+            color: white;
+        }
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .analytics-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ff7e5f;
+            text-decoration: none;
+        }
+        .expired {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.php" class="back-link">← Back to Home</a>
+        <h1>Manage URLs</h1>
+        <div id="urls-list">Loading...</div>
+    </div>
+    <script src="manage.js"></script>
+</body>
+</html>

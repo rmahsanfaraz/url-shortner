@@ -12,9 +12,14 @@
         <form id="shorten-form">
             <input type="url" name="url" placeholder="Enter URL to shorten" required>
             <input type="text" name="custom_code" placeholder="Custom short code (optional)">
+            <input type="number" name="expires_in_days" placeholder="Expires in days (optional)" min="1">
             <button type="submit">Shorten</button>
         </form>
         <div id="result"></div>
+        <div id="qrcode"></div>
+        <div class="links">
+            <a href="manage.html">Manage URLs</a>
+        </div>
     </div>
     <script src="scripts.js"></script>
 </body>

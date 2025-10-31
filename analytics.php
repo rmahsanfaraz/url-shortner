@@ -2,7 +2,7 @@
 include 'config.php';
 
 $code = $_GET['code'] ?? '';
-$stmt = $pdo->prepare("SELECT original_url, visit_count, created_at FROM urls WHERE short_code = ?");
+$stmt = $pdo->prepare("SELECT original_url, visit_count, created_at, expires_at, last_accessed FROM urls WHERE short_code = ?");
 $stmt->execute([$code]);
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 

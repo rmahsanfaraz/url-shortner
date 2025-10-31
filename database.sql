@@ -3,5 +3,7 @@ CREATE TABLE urls (
     original_url TEXT NOT NULL,
     short_code VARCHAR(6) NOT NULL UNIQUE,
     visit_count INT DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP NULL DEFAULT NULL,
+    last_accessed TIMESTAMP NULL DEFAULT NULL
 );

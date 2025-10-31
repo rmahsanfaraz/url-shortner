@@ -44,3 +44,47 @@ button:hover {
     font-size: 18px;
     color: #333;
 }
+
+.success-result {
+    padding: 15px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.copy-btn, .analytics-btn {
+    width: auto;
+    padding: 8px 15px;
+    margin: 5px;
+    background: #3498db;
+    display: inline-block;
+}
+
+.copy-btn:hover, .analytics-btn:hover {
+    background: #2980b9;
+}
+
+.qr-container {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.qr-container img {
+    margin: 10px 0;
+}
+
+.links {
+    margin-top: 30px;
+}
+
+.links a {
+    color: #ff7e5f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
