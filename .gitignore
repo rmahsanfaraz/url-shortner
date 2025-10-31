@@ -1,0 +1,20 @@
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PHP configuration (should be customized per environment)
+# config.php
+
+# Logs
+*.log
+
+# Temporary files
+/tmp/
+*.tmp

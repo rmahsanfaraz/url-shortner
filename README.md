@@ -8,7 +8,11 @@ A simple, colorful URL shortener built with PHP and SQL. This application allows
 ## Features
 - **URL Shortening**: Generate short URLs for any valid long URL.
 - **Custom Short Codes**: Users can specify custom short codes for their URLs.
-- **Analytics**: Track the number of times a short URL has been accessed.
+- **URL Expiration**: Set expiration dates for short URLs (optional).
+- **QR Code Generation**: Automatically generate QR codes for short URLs.
+- **Copy to Clipboard**: Easy one-click copying of short URLs.
+- **URL Management**: View, manage, and delete all created short URLs.
+- **Enhanced Analytics**: Track visit counts, creation date, expiration date, and last accessed time.
 - **Responsive Design**: A user-friendly and colorful interface.
 
 ---
@@ -35,7 +39,8 @@ A simple, colorful URL shortener built with PHP and SQL. This application allows
    ```
 
 2. Import the database:
-   - Open `database.sql` in a SQL client or MySQL command-line and execute it to create the necessary table.
+   - For new installations: Open `database.sql` in a SQL client or MySQL command-line and execute it to create the necessary table.
+   - For existing installations: Run `migration.sql` to add new columns (expires_at, last_accessed) to your existing urls table.
 
 3. Configure database connection:
    - Open `config.php` and update the database credentials:
@@ -61,13 +66,23 @@ A simple, colorful URL shortener built with PHP and SQL. This application allows
 2. Shorten URLs:
    - Enter a long URL in the input field.
    - Optionally, specify a custom short code.
+   - Optionally, set an expiration period in days.
    - Click **Shorten** to generate the short URL.
+   - Use the **Copy to Clipboard** button to easily copy the short URL.
+   - View the automatically generated QR code for mobile sharing.
 
-3. Analytics:
+3. Manage URLs:
+   - Click on **Manage URLs** to view all created short URLs.
+   - View detailed information including visit counts, creation date, expiration date, and last accessed time.
+   - Delete URLs you no longer need.
+   - Copy short URLs directly from the management page.
+
+4. Analytics:
    - Use the `analytics.php` endpoint to get analytics for a specific short URL.
    - Example: `http://yourdomain.com/analytics.php?code=shortcode`
+   - View analytics including visit count, creation date, expiration date, and last accessed time.
 
-4. Redirect:
+5. Redirect:
    - Share the generated short URL.
    - Visitors will be redirected to the original URL.
 
@@ -77,13 +92,17 @@ A simple, colorful URL shortener built with PHP and SQL. This application allows
 ```plaintext
 url-shortener/
 ├── index.php         # Frontend UI
+├── manage.html       # URL management page
 ├── config.php        # Database configuration
 ├── shorten.php       # URL shortening logic
 ├── redirect.php      # URL redirection logic
 ├── analytics.php     # Analytics endpoint
-├── delete.php        # Delete short URLs (optional)
+├── delete.php        # Delete short URLs
+├── list.php          # List all URLs endpoint
+├── qrcode.php        # QR code generation endpoint
 ├── style.css         # Styling for the UI
-├── scripts.js        # Frontend interactivity
+├── scripts.js        # Frontend interactivity for main page
+├── manage.js         # Frontend interactivity for management page
 ├── database.sql      # SQL file for table creation
 └── README.md         # Project documentation
 ```
@@ -98,18 +117,21 @@ url-shortener/
   ```json
   {
     "url": "https://example.com",
-    "custom_code": "mycustomcode" // Optional
+    "custom_code": "mycustomcode", // Optional
+    "expires_in_days": 30 // Optional
   }
   ```
 - **Response**:
   ```json
   {
-    "short_url": "http://yourdomain.com/shortcode"
+    "short_url": "http://yourdomain.com/redirect.php?code=shortcode",
+    "short_code": "shortcode"
   }
   ```
 
 ### **2. Redirect URL**
 - **Endpoint**: `/redirect.php?code=shortcode`
+- **Description**: Redirects to the original URL if not expired
 
 ### **3. Analytics**
 - **Endpoint**: `/analytics.php?code=shortcode`
@@ -118,7 +140,42 @@ url-shortener/
   {
     "original_url": "https://example.com",
     "visit_count": 10,
-    "created_at": "2025-01-01 12:00:00"
+    "created_at": "2025-01-01 12:00:00",
+    "expires_at": "2025-02-01 12:00:00",
+    "last_accessed": "2025-01-15 14:30:00"
+  }
+  ```
+
+### **4. List URLs**
+- **Endpoint**: `/list.php`
+- **Method**: `GET`
+- **Response**: Array of all URLs with their details
+
+### **5. Delete URL**
+- **Endpoint**: `/delete.php`
+- **Method**: `POST` or `DELETE`
+- **Payload**:
+  ```json
+  {
+    "short_code": "shortcode"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "success": true,
+    "message": "URL deleted successfully"
+  }
+  ```
+
+### **6. Generate QR Code**
+- **Endpoint**: `/qrcode.php?code=shortcode`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "qr_url": "https://chart.googleapis.com/chart?...",
+    "short_url": "http://yourdomain.com/redirect.php?code=shortcode"
   }
   ```
 
