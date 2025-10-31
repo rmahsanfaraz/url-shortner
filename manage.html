@@ -84,12 +84,17 @@
         }
 
         tbody tr {
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
         tbody tr:hover {
             background: #f8f9ff;
-            transform: scale(1.01);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            tbody tr:hover {
+                transform: scale(1.01);
+            }
         }
 
         tbody tr:last-child td {
