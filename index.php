@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener - Fast, Simple & Secure</title>
+    <title>URL Shortener - Fast, Simple &amp; Secure</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -115,7 +115,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 URL Shortener. Simple, Fast & Secure.</p>
+            <p>&copy; 2024 URL Shortener. Simple, Fast &amp; Secure.</p>
         </div>
     </footer>
 
